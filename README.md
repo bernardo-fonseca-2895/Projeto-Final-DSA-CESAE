@@ -24,3 +24,16 @@ evolved over time?
 **Source of the dataset:** Video Game Sales - Kaggle
 
 **Link:** https://www.kaggle.com/datasets/gregorut/videogamesales
+
+# PHASE 3 - CLEANING
+
+**CLEAN FILTER AND TRANSFORM DATASET**
+1. Import csv file to Power Query (Used Excel but can also use Power BI);
+2. Filter out the N/A and unkown values from column Publisher and Date;
+3. Filter out outlier (A single row that has the date 2020);
+4. Substitute . for , on sales columns;
+5. Alter types to correct typing on sales collumns;
+6. Add new column from example (Use date column to create decade column);
+7. Add new personalized column Global_Sales Revised by adding NA, EU, JP and Others Sales;
+8. Alter type to decimal on new column;
+9. Save and load to Excel as table ready to use.
