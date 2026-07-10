@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
@@ -7,7 +6,7 @@ from pathlib import Path
 Path("reports").mkdir(exist_ok=True)
 
 #IMPORTAR O DATAFRAME LIMPO
-df_vgsales = pd.read_csv("data/processed/Trabalho_Final_Processed_vgsales.csv")
+df_vgsales = pd.read_csv("data/processed/vgsales_processed.csv")
 
 #VERIFICAR A IMPORTAÇÃO
 df_vgsales.info()
@@ -99,7 +98,7 @@ plt.close()
 
 #VENDAS GLOBAIS POR GÉNERO AO LONGO DAS DÉCADAS COM PIVOT TABLE
 vendas_genero_decada = df_vgsales.pivot_table(values="Global_Sales Revised (M)",
-                                             index="Decades",
+                                             index="Decade",
                                              columns="Genre",
                                              aggfunc="sum")
 
@@ -156,7 +155,7 @@ plt.close()
 #EVOLUÇÃO DE CADA MANUFACTURER AO LONGO DO TEMPO
 evolucao_manufacturer = df_vgsales.pivot_table(
     values="Name",
-    index="Decades",
+    index="Decade",
     columns="Manufacturer",
     aggfunc="count"
 )
@@ -175,7 +174,7 @@ plt.close()
 #EVOLUÇÃO POR TOTAL DE VENDAS
 evolucao_manufacturer_vendas = df_vgsales.pivot_table(
     values="Global_Sales Revised (M)",
-    index="Decades",
+    index="Decade",
     columns="Manufacturer",
     aggfunc="sum"
 )
@@ -193,10 +192,10 @@ plt.close()
 
 #ANÁLISE ORIENTADA ÀS REGIÕES
 #TOTAL DE VENDAS POR REGIÃO
-total_vendas_NA = df_vgsales["NA_Sales(M)"].sum()
-total_vendas_EU = df_vgsales["EU_Sales(M)"].sum()
-total_vendas_JP = df_vgsales["JP_Sales(M)"].sum()
-total_vendas_Others = df_vgsales["Other_Sales(M)"].sum()
+total_vendas_NA = df_vgsales["NA_Sales (M)"].sum()
+total_vendas_EU = df_vgsales["EU_Sales (M)"].sum()
+total_vendas_JP = df_vgsales["JP_Sales (M)"].sum()
+total_vendas_Others = df_vgsales["Other_Sales (M)"].sum()
 
 print("\n=====TOTAL VENDAS POR REGIÃO:=====")
 print(f"\nNA: {total_vendas_NA}")
@@ -228,7 +227,7 @@ plt.close()
 
 #GENRES MAIS POPULARES POR REGIÃO
 vendas_genero_regiao = df_vgsales.pivot_table(
-    values=["NA_Sales(M)", "EU_Sales(M)", "JP_Sales(M)", "Other_Sales(M)"],
+    values=["NA_Sales (M)", "EU_Sales (M)", "JP_Sales (M)", "Other_Sales (M)"],
     index="Genre",
     aggfunc="sum"
 )
@@ -249,7 +248,7 @@ plt.show()
 plt.close()
 
 #TOP 5 JOGOS NA REGIÃO NA
-top5_NA = (df_vgsales.groupby("Name")["NA_Sales(M)"].sum().sort_values(ascending=False).head(5))
+top5_NA = (df_vgsales.groupby("Name")["NA_Sales (M)"].sum().sort_values(ascending=False).head(5))
 print(f"\nTOP 5 JOGOS NA REGIÃO NA:\n{top5_NA}")
 
 top5_NA.plot(kind="barh")
@@ -261,7 +260,7 @@ plt.show()
 plt.close()
 
 #TOP 5 JOGOS NA REGIÃO EU
-top5_EU = (df_vgsales.groupby("Name")["EU_Sales(M)"].sum().sort_values(ascending=False).head(5))
+top5_EU = (df_vgsales.groupby("Name")["EU_Sales (M)"].sum().sort_values(ascending=False).head(5))
 print(f"\nTOP 5 JOGOS NA REGIÃO EU:\n{top5_EU}")
 
 top5_EU.plot(kind="barh")
@@ -273,7 +272,7 @@ plt.show()
 plt.close()
 
 #TOP 5 JOGOS NA REGIÃO JP
-top5_JP = (df_vgsales.groupby("Name")["JP_Sales(M)"].sum().sort_values(ascending=False).head(5))
+top5_JP = (df_vgsales.groupby("Name")["JP_Sales (M)"].sum().sort_values(ascending=False).head(5))
 print(f"\nTOP 5 JOGOS NA REGIÃO JP:\n{top5_JP}")
 
 top5_JP.plot(kind="barh")
@@ -285,7 +284,7 @@ plt.show()
 plt.close()
 
 #TOP 5 JOGOS NOUTRAS REGIÕES
-top5_Others = (df_vgsales.groupby("Name")["Other_Sales(M)"].sum().sort_values(ascending=False).head(5))
+top5_Others = (df_vgsales.groupby("Name")["Other_Sales (M)"].sum().sort_values(ascending=False).head(5))
 print(f"\nTOP 5 JOGOS NOUTRAS REGIÕES:\n{top5_Others}")
 
 top5_Others.plot(kind="barh")
