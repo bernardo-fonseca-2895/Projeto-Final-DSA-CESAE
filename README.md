@@ -7,9 +7,9 @@ and Excel/PowerBI Data Visualization
 
 **OUR PIPELINE:** data -> Excel PowerQuery (cleaning) -> Python (cleaning + analysis) -> Excel Dashboard
 
-**TEAM:**
-1. Bernardo Pina Fonseca
-2. Miguel Fonseca Pina
+**TEAM AND RESPONSIBILITIES:**
+1. Bernardo Pina Fonseca - Data Cleaning (Python), Analysis, Coordination
+2. Miguel Fonseca Pina - Data Cleaning (Excel PowerQuery), Dashboard (Excel)
 
 
 # PHASE 1 - BUSINESS
@@ -34,15 +34,39 @@ evolved over time?
 
 **SIZE:** ~16.5K lines, 11 columns: Rank, Name, Platform, Year, Publisher, NA_Sales, EU_Sales, JP_Sales, Other_Sales, Global_Sales
 
-# PHASE 3 - CLEANING
+# PHASE 3 - PREPARATION
+**CLEAN, FILTER AND TRANSFORM DATASET**
+1. Download data and place `vgsales.csv` in `data/raw/` 
+2. Upload `vgsales.csv` file to Excel PowerQuery;
+3. Filter out the N/A and Unknown values from columns "Publisher" and "Year";
+4. Filter out the outlier (A single row in the column "Year" = 2020);
+5. Substitute . for , on all Sales columns;
+6. Alter data type to Decimal Number on all Sales columns;
+7. Add new column from example (Use Year column to create "Decade" column by typing the respective starting year of the decade on the first two lines followed by an "-s" so Excel can fill the rest of the lines);
+8. Add new personalized column "Global_Sales_Verified" by adding the columns "NA_Sales", "EU_Sales", "JP_Sales" and "Others_Sales";
+9. Alter data type to Decimal Number on new column;
+10. Save and load to Excel as table on existing spreadsheet;
+11. Rename existing spreadsheet to "vgsales";
+12. Save as `vgsales_fase1.xlsx` and place the file in `data/1stCleaningPhase/`
+13. Open VSCode, click File -> Open Folder -> Projeto-Final-DSA-CESAE
+14. Install dependencies: `pip install -r requirements.txt`
+15. Run the python cleaning script: `python src/limpeza.py`
+16. Run the analysis script: `python src/analise.py`
+17. Dashboard: Open `data/processed/vgsales_processed.csv` in Excel (see `reports/relatorio.md`)
 
-**CLEAN FILTER AND TRANSFORM DATASET**
-1. Import csv file to Power Query (Used Excel but can also use Power BI);
-2. Filter out the N/A and unkown values from column Publisher and Date;
-3. Filter out outlier (A single row that has the date 2020);
-4. Substitute . for , on sales columns;
-5. Alter types to correct typing on sales collumns;
-6. Add new column from example (Use date column to create decade column);
-7. Add new personalized column Global_Sales Revised by adding NA, EU, JP and Others Sales;
-8. Alter type to decimal on new column;
-9. Save and load to Excel as table ready to use.
+# PHASE 4 - ANALYSIS
+**ANSWERING THE BUSINESS QUESTION AND USER STORIES**
+
+*(REAL RESULTS OBTAINED FROM THE DATASET)*
+
+**TOTAL GLOBAL SALES:** ~8973.63 M units sold in 4 decades, between 11246 videogame entries, distributed by ~575 publishers and 31 different platforms
+**MOST POPULAR GENRES IN THE LAST DECADE:** Action (671 M), Shooter (462 M), Sports (325 M), Role-Playing (302 M)
+**MOST POPULAR HARDWARE MANUFACTURERS:** Sony (40.4%), Nintendo (37.6%), Microsoft (13.9%)
+**MOST POPULAR GENRES PER REGION:** **NA:** Action (861 M); **EU:** Action (516 M); **JP:** Role-Playing (349 M); **OTHERS**: Action (185 M)
+
+# PHASE 5 - EVALUATION
+**VALIDATING RESULTS & LIMITATIONS**
+
+- ~300 lines with null/unknown values in columns "Year" and "Publisher": opted to remove due to low impact on final results;
+- Sales columns measured in units sold, not revenue generated: good for measuring popularity, not so much to measure profit;
+- Some lines in column "Publisher" have typos in their names: not impactful in the end results, look to correct in the future;
