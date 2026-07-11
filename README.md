@@ -5,7 +5,12 @@
 **OBJECTIVE:** Demonstrate competences in the area of Data Analysis, such as Python/R programming, SQL/Database managing
 and Excel/PowerBI Data Visualization
 
-**Material:** 'vgsales.csv'
+**OUR PIPELINE:** data -> Excel PowerQuery (cleaning) -> Python (cleaning + analysis) -> Excel Dashboard
+
+**TEAM:**
+1. Bernardo Pina Fonseca
+2. Miguel Fonseca Pina
+
 
 # PHASE 1 - BUSINESS
 **DEFINE BUSINESS QUESTION AND OBJECTIVES**
@@ -19,11 +24,15 @@ evolved over time?
 3. Knowing which videogame genres sell more per region (NA, EU, JP) to ajust stock and marketing campaigns per region.
 
 # PHASE 2 - DATA
-**EXTRACT AND TRANSFORM DATA**
+**EXTRACT AND EXPLORE DATA**
+
+**Material:** 'vgsales.csv'
 
 **Source of the dataset:** Video Game Sales - Kaggle
 
 **Link:** https://www.kaggle.com/datasets/gregorut/videogamesales
+
+**SIZE:** ~16.5K lines, 11 columns: Rank, Name, Platform, Year, Publisher, NA_Sales, EU_Sales, JP_Sales, Other_Sales, Global_Sales
 
 # PHASE 3 - CLEANING
 
