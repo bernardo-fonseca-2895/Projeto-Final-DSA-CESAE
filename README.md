@@ -60,8 +60,11 @@ evolved over time?
 *(REAL RESULTS OBTAINED FROM THE DATASET)*
 
 **TOTAL GLOBAL SALES:** ~8973.63 M units sold in 4 decades, between 11246 videogame entries, distributed by ~575 publishers and 31 different platforms
+
 **MOST POPULAR GENRES IN THE LAST DECADE:** Action (671 M), Shooter (462 M), Sports (325 M), Role-Playing (302 M)
+
 **MOST POPULAR HARDWARE MANUFACTURERS:** Sony (40.4%), Nintendo (37.6%), Microsoft (13.9%)
+
 **MOST POPULAR GENRES PER REGION:** **NA:** Action (861 M); **EU:** Action (516 M); **JP:** Role-Playing (349 M); **OTHERS**: Action (185 M)
 
 # PHASE 5 - EVALUATION
