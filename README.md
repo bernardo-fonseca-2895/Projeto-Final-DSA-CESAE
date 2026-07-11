@@ -40,9 +40,9 @@ evolved over time?
 2. Upload `vgsales.csv` file to Excel PowerQuery;
 3. Filter out the N/A and Unknown values from columns "Publisher" and "Year";
 4. Filter out the outlier (A single row in the column "Year" = 2020);
-5. Substitute . for , on all Sales columns;
+5. Substitute . for , on all Sales columns (Using the substitute function on Query while selecting all the sales columns);
 6. Alter data type to Decimal Number on all Sales columns;
-7. Add new column from example (Use Year column to create "Decade" column by typing the respective starting year of the decade on the first two lines followed by an "-s" so Excel can fill the rest of the lines);
+7. Add new column from example (Use Year column to create "Decade" column by typing the respective starting year of the decade on the first two lines followed by an "-s" so Query can fill the rest of the lines);
 8. Add new personalized column "Global_Sales_Verified" by adding the columns "NA_Sales", "EU_Sales", "JP_Sales" and "Others_Sales";
 9. Alter data type to Decimal Number on new column;
 10. Save and load to Excel as table on existing spreadsheet;
