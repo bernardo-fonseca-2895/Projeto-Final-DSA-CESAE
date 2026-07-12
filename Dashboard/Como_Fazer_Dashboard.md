@@ -2,10 +2,10 @@
 
 1. **Obter Dados -> Texto/CSV** 'data/processed/vgsales_processed.csv' -> *Carregar*.
 2. **Transformar Dados** abre o Power Query para fazer ultimas limpezas simples para simplificar consulta e construção do dashboard.
-3. **Substiruir Valores** Substituir . por , nas colunas sales (NA, EU, JP, Other, Global, Global_Verified).
-4. Alterar os Tipos para os correctos. Todas as colunas vao estar como geral. Passar as colunas Rank e Year para número inteiro e as colunas sales para número decimal.
+3. **Substiruir Valores** Substituir '.' por ',' nas colunas sales (NA, EU, JP, Other, Global, Global_Verified).
+4. Alterar os Tipos de Dados para os correctos. Todas as colunas vao estar como texto. Passar as colunas Rank e Year para número inteiro e as colunas sales para número decimal.
 5. **Base -> Fechar e Carregar -> Fechar e Carregar para... -> (CHECK BOX)Apenas criar ligação e Adicionar estes dados ao Modelo de Dados -> OK**.
-6. **Power Pivot** Gerir Modelo de dados.
+6. **Power Pivot -> Gerir Modelo de dados**.
 7. Criar 6 medidas:
     -Vendas Totais:=SUM([Global_Sales_Verified]);
     -Vendas NA:=SUM([NA_Sales]);
