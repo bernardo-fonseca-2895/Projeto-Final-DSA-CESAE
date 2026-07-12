@@ -46,6 +46,7 @@ evolved over time?
 
 **REPOSITORY STRUCTURE:**
 
+```
 dashboard/  Projeto Final Dashboard.xlsm + Como_Fazer_Dashboard.md
 data/
   1stCleaningPhase/   vgsales_fase1.xlsx
@@ -58,6 +59,7 @@ src/
 Modelo - Proposta Inicial Projeto DSA.docx
 README.md
 requirements.txt
+```
 
 # PHASE 3 - PREPARATION
 **CLEAN, FILTER AND TRANSFORM DATASET**
