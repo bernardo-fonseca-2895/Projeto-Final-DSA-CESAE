@@ -44,7 +44,7 @@ evolved over time?
 4. Filter out the outlier (A single row in the column "Year" = 2020);
 5. Substitute . for , on all Sales columns (Using the substitute function on Query while selecting all the sales columns);
 6. Alter data type to Decimal Number on all Sales columns;
-7. Add new column from example (Use Year column to create "Decade" column by typing the respective starting year of the decade on the first two lines followed by an "-s" so Query can fill the rest of the lines);
+7. Use "Create new column from example" function on Query to create column "Decade" from column "Year" (write the respective decade on the first 2 entries followed by "-s" then Query will fill the rest of the column
 8. Add new personalized column "Global_Sales_Verified" by adding the columns "NA_Sales", "EU_Sales", "JP_Sales" and "Others_Sales";
 9. Alter data type to Decimal Number on new column;
 10. Save and load to Excel as table on existing spreadsheet;
@@ -53,28 +53,60 @@ evolved over time?
 
 *M CODE FOR EXCEL POWERQUERY STEPS:*
 
+```powerquery
 let
-    Origem = Csv.Document(File.Contents("C:\Users\berna\OneDrive\Ambiente de Trabalho\Formação Data Science\DATA SCIENCE & ANALYTICS\Projeto-Final-DSA-CESAE-main\Projeto-Final-DSA-CESAE\data\raw\vgsales.csv"),[Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+    Origem = Csv.Document(
+        File.Contents("C:\Users\berna\OneDrive\Ambiente de Trabalho\Formação Data Science\DATA SCIENCE & ANALYTICS\Projeto-Final-DSA-CESAE-main\Projeto-Final-DSA-CESAE\data\raw\vgsales.csv"),
+        [Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.None]
+    ),
     #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars=true]),
-    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Rank", Int64.Type}, {"Name", type text}, {"Platform", type text}, {"Year", type text}, {"Genre", type text}, {"Publisher", type text}, {"NA_Sales", type text}, {"EU_Sales", type text}, {"JP_Sales", type text}, {"Other_Sales", type text}, {"Global_Sales", type text}}),
-    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each ([Year] <> "N/A") and ([Publisher] <> "N/A" and [Publisher] <> "Unknown")),
-    #"Valor Substituído" = Table.ReplaceValue(#"Linhas Filtradas",".",",",Replacer.ReplaceText,{"NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales", "Global_Sales"}),
-    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Valor Substituído",{{"NA_Sales", type number}, {"EU_Sales", type number}, {"JP_Sales", type number}, {"Other_Sales", type number}, {"Global_Sales", type number}}),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos", {
+        {"Rank", Int64.Type}, {"Name", type text}, {"Platform", type text},
+        {"Year", type text}, {"Genre", type text}, {"NA_Sales", type text},
+        {"EU_Sales", type text}, {"JP_Sales", type text},
+        {"Other_Sales", type text}, {"Global_Sales", type text}
+    }),
+    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado",
+        each ([Year] <> "N/A") and ([Publisher] <> "N/A") and ([Publisher] <> "Unknown")
+    ),
+    #"Valor Substituído" = Table.ReplaceValue(#"Linhas Filtradas", ".", ",",
+        Replacer.ReplaceText, {"NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales", "Global_Sales"}
+    ),
+    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Valor Substituído", {
+        {"NA_Sales", type number}, {"EU_Sales", type number},
+        {"JP_Sales", type number}, {"Other_Sales", type number},
+        {"Global_Sales", type number}
+    }),
     #"Linhas Filtradas1" = Table.SelectRows(#"Tipo Alterado1", each true),
-    #"Adicionar Coluna Personalizada" = Table.AddColumn(#"Linhas Filtradas1", "Decade", each Text.Combine({Text.Start(Date.ToText(Date.From([Year]), "yyyy"), 3), "0s"}), type text),
-    #"Colunas Reordenadas" = Table.ReorderColumns(#"Adicionar Coluna Personalizada",{"Rank", "Name", "Platform", "Year", "Decade", "Genre", "Publisher", "NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales", "Global_Sales"}),
-    #"Personalizado Adicionado" = Table.AddColumn(#"Colunas Reordenadas", "Global_Sales_Verified", each [NA_Sales]+[EU_Sales]+[JP_Sales]+[Other_Sales]),
-    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalizado Adicionado",{{"Global_Sales_Verified", type number}}),
+    #"Adicionar Coluna Personalizada" = Table.AddColumn(#"Linhas Filtradas1", "Decade",
+        each Text.Combine({Text.Start(Date.ToText(Date.From([Year]), "yyyy"), 3), "0s"})
+    ),
+    #"Colunas Reordenadas" = Table.ReorderColumns(#"Adicionar Coluna Personalizada", {
+        "Rank", "Name", "Platform", "Year", "Decade", "Genre",
+        "Publisher", "NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales", "Global_Sales"
+    }),
+    #"Personalizado Adicionado" = Table.AddColumn(#"Colunas Reordenadas",
+        "Global_Sales_Verified", each [NA_Sales] + [EU_Sales] + [JP_Sales] + [Other_Sales]
+    ),
+    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalizado Adicionado", {
+        {"Global_Sales_Verified", type number}
+    }),
     #"Linhas Filtradas2" = Table.SelectRows(#"Tipo Alterado2", each ([Year] <> "2020"))
 in
     #"Linhas Filtradas2"
+```
 
 **CLEANING PHASE 2 - PYTHON**
-13. Open VSCode, click File -> Open Folder -> Projeto-Final-DSA-CESAE
-14. Install dependencies: `pip install -r requirements.txt`
-15. Run the python cleaning script: `python src/limpeza.py` (Forces "Name" column into type string, creates new "Manufacturer" column and reorders the dataset based on "Rank")
-16. Run the analysis script: `python src/analise.py`
-17. Dashboard: Open `data/processed/vgsales_processed.csv` in Excel (see `reports/relatorio.md`)
+
+13. Open VSCode, click File -> Open Folder -> Projeto-Final-DSA-CESAE;
+
+14. Install dependencies: `pip install -r requirements.txt`;
+
+15. Run the python cleaning script: `python src/limpeza.py` (Forces "Name" column into type string, creates new "Manufacturer" column and reorders the dataset based on "Rank");
+
+16. Run the analysis script: `python src/analise.py`;
+
+17. Dashboard: Open `data/processed/vgsales_processed.csv` in Excel (see `reports/relatorio.md`);
 
 # PHASE 4 - ANALYSIS
 **ANSWERING THE BUSINESS QUESTION AND USER STORIES**
