@@ -5,7 +5,7 @@
 3. **Substiruir Valores** Substituir . por , nas colunas "Sales" (NA, EU, JP, Other, Global, Global_Verified).
 4. Passar as colunas Rank e Year para Número Inteiro e as colunas Sales para número decimal.
 5. **Base -> Fechar e Carregar -> Fechar e Carregar para... -> (CHECK BOX)Apenas criar ligação e Adicionar estes dados ao Modelo de Dados -> OK**.
-6. **Power Pivot** Gerir Modelo de dados.
+6. **Power Pivot -> Gerir Modelo de dados**.
 7. Criar 6 medidas:
     -Vendas Totais:=SUM([Global_Sales_Verified]);
     -Vendas NA:=SUM([NA_Sales]);
