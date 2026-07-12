@@ -56,4 +56,4 @@ df_vgsales = df_vgsales.sort_values(by="Rank", ascending=True)
 print(df_vgsales.head())
 
 #EXPORTAR O DATAFRAME LIMPO PARA CSV
-df_vgsales.to_csv("data/processed/vgsales_processed.csv", index=False)
+df_vgsales.to_csv("data/processed/vgsales_processed.csv",sep=";", index=False)

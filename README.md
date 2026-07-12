@@ -34,10 +34,40 @@ evolved over time?
 
 **SIZE:** ~16.5K lines, 11 columns: Rank, Name, Platform, Year, Publisher, NA_Sales, EU_Sales, JP_Sales, Other_Sales, Global_Sales
 
+**SOFTWARE USED:** 
+
+- *Data Cleaning:* Excel PowerQuery, Python (pandas)
+
+- *Data Analysis:* Python (pandas, matplotlib, seaborn)
+
+- *Dashboard:* Excel
+
+- *Version Control:* Git + Github
+
+**REPOSITORY STRUCTURE:**
+
+```
+dashboard/  Projeto Final Dashboard.xlsm + Como_Fazer_Dashboard.md
+data/
+  1stCleaningPhase/   vgsales_fase1.xlsx
+  processed/  vgsales_processed.csv
+  raw/   vgsales.csv
+reports/  graphs + relatorio.md
+src/
+  analise.py
+  limpeza.py
+Modelo - Proposta Inicial Projeto DSA.docx
+README.md
+requirements.txt
+```
+
 # PHASE 3 - PREPARATION
 **CLEAN, FILTER AND TRANSFORM DATASET**
 
 **CLEANING PHASE 1 - EXCEL POWERQUERY**
+
+*(When opening PowerQuery, adjust file path in Origin to the correct folder in your computer)*
+
 1. Download data and place `vgsales.csv` in `data/raw/` 
 2. Upload `vgsales.csv` file to Excel PowerQuery;
 3. Filter out the N/A and Unknown values from columns "Publisher" and "Year";
