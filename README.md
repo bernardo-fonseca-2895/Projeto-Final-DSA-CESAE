@@ -36,6 +36,8 @@ evolved over time?
 
 # PHASE 3 - PREPARATION
 **CLEAN, FILTER AND TRANSFORM DATASET**
+
+**CLEANING PHASE 1 - EXCEL POWERQUERY**
 1. Download data and place `vgsales.csv` in `data/raw/` 
 2. Upload `vgsales.csv` file to Excel PowerQuery;
 3. Filter out the N/A and Unknown values from columns "Publisher" and "Year";
@@ -48,9 +50,29 @@ evolved over time?
 10. Save and load to Excel as table on existing spreadsheet;
 11. Rename existing spreadsheet to "vgsales";
 12. Save as `vgsales_fase1.xlsx` and place the file in `data/1stCleaningPhase/`
+
+*M CODE FOR EXCEL POWERQUERY STEPS:*
+
+let
+    Origem = Csv.Document(File.Contents("C:\Users\berna\OneDrive\Ambiente de Trabalho\Formação Data Science\DATA SCIENCE & ANALYTICS\Projeto-Final-DSA-CESAE-main\Projeto-Final-DSA-CESAE\data\raw\vgsales.csv"),[Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars=true]),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Rank", Int64.Type}, {"Name", type text}, {"Platform", type text}, {"Year", type text}, {"Genre", type text}, {"Publisher", type text}, {"NA_Sales", type text}, {"EU_Sales", type text}, {"JP_Sales", type text}, {"Other_Sales", type text}, {"Global_Sales", type text}}),
+    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each ([Year] <> "N/A") and ([Publisher] <> "N/A" and [Publisher] <> "Unknown")),
+    #"Valor Substituído" = Table.ReplaceValue(#"Linhas Filtradas",".",",",Replacer.ReplaceText,{"NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales", "Global_Sales"}),
+    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Valor Substituído",{{"NA_Sales", type number}, {"EU_Sales", type number}, {"JP_Sales", type number}, {"Other_Sales", type number}, {"Global_Sales", type number}}),
+    #"Linhas Filtradas1" = Table.SelectRows(#"Tipo Alterado1", each true),
+    #"Adicionar Coluna Personalizada" = Table.AddColumn(#"Linhas Filtradas1", "Decade", each Text.Combine({Text.Start(Date.ToText(Date.From([Year]), "yyyy"), 3), "0s"}), type text),
+    #"Colunas Reordenadas" = Table.ReorderColumns(#"Adicionar Coluna Personalizada",{"Rank", "Name", "Platform", "Year", "Decade", "Genre", "Publisher", "NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales", "Global_Sales"}),
+    #"Personalizado Adicionado" = Table.AddColumn(#"Colunas Reordenadas", "Global_Sales_Verified", each [NA_Sales]+[EU_Sales]+[JP_Sales]+[Other_Sales]),
+    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalizado Adicionado",{{"Global_Sales_Verified", type number}}),
+    #"Linhas Filtradas2" = Table.SelectRows(#"Tipo Alterado2", each ([Year] <> "2020"))
+in
+    #"Linhas Filtradas2"
+
+**CLEANING PHASE 2 - PYTHON**
 13. Open VSCode, click File -> Open Folder -> Projeto-Final-DSA-CESAE
 14. Install dependencies: `pip install -r requirements.txt`
-15. Run the python cleaning script: `python src/limpeza.py`
+15. Run the python cleaning script: `python src/limpeza.py` (Forces "Name" column into type string, creates new "Manufacturer" column and reorders the dataset based on "Rank")
 16. Run the analysis script: `python src/analise.py`
 17. Dashboard: Open `data/processed/vgsales_processed.csv` in Excel (see `reports/relatorio.md`)
 

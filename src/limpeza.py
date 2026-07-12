@@ -19,34 +19,12 @@ df_vgsales.info()
 
 
 # ================= ESTAÇÃO 2: LIMPEZA DE DADOS =================
-#LISTAGEM DOS NULOS EM PUBLISHER
-print(f"\nNulos em PUBLISHER:\n{df_vgsales['Publisher'].isna().sum()}") #contagem
-
-#IMPRIMIR OS NULOS
-print(f"\nLinhas com nulos em PUBLISHER:\n{df_vgsales[df_vgsales['Publisher'].isna()]}") #imprimir os nulos
-
-#DROPPAR OS NULOS EM PUBLISHER
-df_vgsales = df_vgsales.dropna(subset=['Publisher'])
-
-#LISTAGEM DOS NULOS EM PUBLISHER APÓS DROPPAR
-print(f"\nNulos em PUBLISHER após droppar:\n{df_vgsales['Publisher'].isna().sum()}") #contagem
-
-#CONTAGEM DE LINHAS EM PUBLISHER COM UNKNOWN
-print(f"\nLinhas com PUBLISHER = 'Unknown':\n{df_vgsales[df_vgsales['Publisher'] == 'Unknown'].shape[0]}") #contagem
-
-#LISTAGEM
-print(f"\nLinhas com PUBLISHER = 'Unknown':\n{df_vgsales[df_vgsales['Publisher'] == 'Unknown']}") #imprimir as linhas
-
 #PARTE DA LIMPEZA FEITA EM EXCEL POWER QUERY POIS EXISTEM DETALHES MAIS SIMPLES DE FAZER LÁ
 #EX: CRIAÇÃO DA COLUNA DECADE A PARTIR DE EXEMPLO
 
-#FORÇAR A COLUNA "NAME" A SER DO TIPO STRING
+#FORÇAR A COLUNA "NAME" A SER DO TIPO STRING (IMPORTADA COMO TIPO OBJECT)
 df_vgsales["Name"] = df_vgsales["Name"].astype(str)
 
-#ELIMINAR LINHAS ONDE YEAR = 2020, POIS SÃO OUTLIERS
-print(f"\nLinhas com YEAR = 2020:\n{df_vgsales[df_vgsales['Year'] == 2020]}") #imprimir as linhas
-df_vgsales = df_vgsales.drop(df_vgsales[df_vgsales['Year'] == 2020].index) #dropar as linhas
-print(f"\nLinhas com YEAR = 2020 após droppar:\n{df_vgsales[df_vgsales['Year'] == 2020]}") #imprimir as linhas
 
 #CRIAR COLUNA MANUFACTURER A PARTIR DE PLATFORM
 #IMPRIMIR VALORES UNICOS DE PLATFORM
