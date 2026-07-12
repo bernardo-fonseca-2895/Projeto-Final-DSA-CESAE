@@ -42,9 +42,9 @@ evolved over time?
 2. Upload `vgsales.csv` file to Excel PowerQuery;
 3. Filter out the N/A and Unknown values from columns "Publisher" and "Year";
 4. Filter out the outlier (A single row in the column "Year" = 2020);
-5. Substitute . for , on all Sales columns;
+5. Substitute . for , on all Sales columns (Using the substitute function on Query while selecting all the sales columns);
 6. Alter data type to Decimal Number on all Sales columns;
-7. Add new column from example (Use Year column to create "Decade" column by typing the respective starting year of the decade on the first two lines followed by an "-s" so Excel can fill the rest of the lines);
+7. Add new column from example (Use Year column to create "Decade" column by typing the respective starting year of the decade on the first two lines followed by an "-s" so Query can fill the rest of the lines);
 8. Add new personalized column "Global_Sales_Verified" by adding the columns "NA_Sales", "EU_Sales", "JP_Sales" and "Others_Sales";
 9. Alter data type to Decimal Number on new column;
 10. Save and load to Excel as table on existing spreadsheet;
@@ -82,8 +82,11 @@ in
 *(REAL RESULTS OBTAINED FROM THE DATASET)*
 
 **TOTAL GLOBAL SALES:** ~8973.63 M units sold in 4 decades, between 11246 videogame entries, distributed by ~575 publishers and 31 different platforms
+
 **MOST POPULAR GENRES IN THE LAST DECADE:** Action (671 M), Shooter (462 M), Sports (325 M), Role-Playing (302 M)
+
 **MOST POPULAR HARDWARE MANUFACTURERS:** Sony (40.4%), Nintendo (37.6%), Microsoft (13.9%)
+
 **MOST POPULAR GENRES PER REGION:** **NA:** Action (861 M); **EU:** Action (516 M); **JP:** Role-Playing (349 M); **OTHERS**: Action (185 M)
 
 # PHASE 5 - EVALUATION
