@@ -6,7 +6,7 @@ from pathlib import Path
 Path("reports").mkdir(exist_ok=True)
 
 #IMPORTAR O DATAFRAME LIMPO
-df_vgsales = pd.read_csv("data/processed/vgsales_processed.csv")
+df_vgsales = pd.read_csv("data/processed/vgsales_processed.csv", sep=";")
 
 #VERIFICAR A IMPORTAÇÃO
 df_vgsales.info()
