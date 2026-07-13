@@ -55,6 +55,7 @@ data/
   processed/  vgsales_processed.csv
   raw/   vgsales.csv
 reports/  graphs + relatorio.md
+slides/  Projeto_Videojogos_Final.pptx
 src/
   analise.py
   limpeza.py
