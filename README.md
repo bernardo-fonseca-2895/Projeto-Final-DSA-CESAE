@@ -54,8 +54,8 @@ data/
   1stCleaningPhase/   vgsales_fase1.xlsx
   processed/  vgsales_processed.csv
   raw/   vgsales.csv
-reports/  graphs + relatorio.md
 slides/  Projeto_Videojogos_Final.pptx
+reports/  graphs + relatorio.md
 src/
   analise.py
   limpeza.py
@@ -139,7 +139,7 @@ in
 
 16. Run the analysis script: `python src/analise.py`;
 
-17. Dashboard: Open `data/processed/vgsales_processed.csv` in Excel (see `reports/relatorio.md`);
+17. Dashboard: Open `data/processed/vgsales_processed.csv` in Excel (see `dashboard/Como_Fazer_Dashboard.md`);
 
 # PHASE 4 - ANALYSIS
 **ANSWERING THE BUSINESS QUESTION AND USER STORIES**
