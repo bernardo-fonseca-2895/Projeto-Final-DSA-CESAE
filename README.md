@@ -44,6 +44,8 @@ evolved over time?
 
 - *Version Control:* Git + Github
 
+- *Presentation Structure:* Claude AI + PowerPoint
+
 **REPOSITORY STRUCTURE:**
 
 ```
