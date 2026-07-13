@@ -77,3 +77,13 @@ As 3 grandes regiões do mercado de videojogos são: NA (North America), EU (Eur
 2. O mercado de plataformas é largamente dominado pela **Nintendo** e pela **Sony**, e essa dominância não parece acabar tão cedo. É seguro acreditar que continuarão a ser as benchmarks a superar em termos de hardware de consola.
 
 3. Em relação aos mercados regionais, o genre mais dominante em todos é **Action**, exceto no mercado japonês, onde **Role-Playing** é o genre mais dominante.
+
+# LIMITAÇÕES
+
+- Os dados trabalham com unidades vendidas, não com valores de venda, neste dataset um jogo AAA e um jogo Indie têm o mesmo peso. Ideal para popularidade, não tanto para receita.
+
+- Valores nulos em "Year" e "Publisher": removidos devido à pequena influência nos resultados
+
+- O dataset reflete os dados até à década 2010-2019, não reflete dados da atualidade. Havia apenas um registo para Year = 2020, removido por ser considerado outlier neste dataset.
+
+- Algumas linhas na coluna "Publisher" têm a mesma entidade escrita de maneiras diferentes. Baixo impacto nos resultados finais, mas algo a ter em consideração.

@@ -157,3 +157,4 @@ in
 - ~300 lines with null/unknown values in columns "Year" and "Publisher": opted to remove due to low impact on final results;
 - Sales columns measured in units sold, not revenue generated: good for measuring popularity, not so much to measure profit;
 - Some lines in column "Publisher" have typos in their names: not impactful in the end results, look to correct in the future;
+- Dataset reflects data gathered until the decade of 2010-2019, with a single line having Year = 2020. Opted to remove due to being considered an outlier in this dataset, but doesn't really reflect present day stats.
