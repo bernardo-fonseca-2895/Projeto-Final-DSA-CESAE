@@ -32,6 +32,6 @@
     -Selecionando a tabela Platform, criar um gráfico de Colunas Agrupadas 3D;    
     -Selecionando a tabela Genre, criar um gráfico de Colunas Agrupadas 3D;
     -Selecionando a tabela Publisher, criar um gráfico de Barras Agrupadas 3D;
-    -Selecionando a tabela Manufacturer, criar um gráfico de Barras Agrupadas 3D.
+    -Selecionando a tabela Manufacturer, criar um gráfico Pie.
 13. Estilizar a gosto.
 14. **Guardar como:** Projeto Final Excel.xlsx
